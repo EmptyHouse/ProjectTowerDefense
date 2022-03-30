@@ -1,18 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using EmptyHouseGames.ProjectTowerDefense.Actor;
 using UnityEngine;
 
-public class EHCharacter : MonoBehaviour
+namespace EmptyHouseGames.ProjectTowerDefense.Actor
 {
-    // Start is called before the first frame update
-    void Start()
+    public class EHCharacter : EHPawn
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    
     }
 }
+
