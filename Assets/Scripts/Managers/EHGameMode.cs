@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EHGameMode : MonoBehaviour
+namespace EmptyHouseGames.ProjectTowerDefense.Manager
 {
-    // Start is called before the first frame update
-    void Start()
+    public class EHGameMode : EHGameManager
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public override void InitializeManager(FWorldSettings WorldSettings)
+        {
+            base.InitializeManager(WorldSettings);
+        }
     }
 }
