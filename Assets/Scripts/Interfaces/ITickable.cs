@@ -1,8 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-public interface ITickable
+namespace EmptyHouseGames.ProjectTowerDefense
 {
-    public void Tick();
+    public interface ITickable
+    {
+        public void Tick();
+    }
+
 }

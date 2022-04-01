@@ -19,6 +19,22 @@ public class EHActorComponent : MonoBehaviour
     #endregion monobehaviour methods
 
     #region owning actor methods
+
+    public Vector3 GetOwningActorLocation()
+    {
+        return OwningActor.Position;
+    }
+
+    public Vector3 GetOwningActorRotation()
+    {
+        return OwningActor.Rotation;
+    }
+
+    public Vector3 GetOwningActorScale()
+    {
+        return OwningActor.Scale;
+    }
+    
     public void SetOwningActorLocation(Vector3 Location)
     {
         OwningActor.SetActorPosition(Location);

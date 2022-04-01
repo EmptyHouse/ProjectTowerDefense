@@ -8,7 +8,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Actor
         public Vector3 Rotation { get; private set; }
         public Vector3 Scale { get; private set; }
 
-        public void Awake()
+        protected virtual void Awake()
         {
             Position = transform.position;
             Rotation = transform.eulerAngles;

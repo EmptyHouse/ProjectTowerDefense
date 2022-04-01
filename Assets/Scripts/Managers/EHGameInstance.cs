@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using EmptyHouseGames.ProjectTowerDefense.Controller;
 using UnityEngine;
 
 
@@ -11,6 +12,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
         public EHGameMode GameMode;
         public EHGameHUD GameHUD;
         public EHGameState GameState;
+        public EHPlayerController PlayerController;
     }
     /// <summary>
     /// The Game Instance is an object that persists throughout the duration of the game's life. You can use this to reference
