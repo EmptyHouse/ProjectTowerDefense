@@ -6,6 +6,7 @@ using EmptyHouseGames.ProjectTowerDefense.Actor;
 public class EHActorComponent : MonoBehaviour
 {
     public EHActor OwningActor { get; private set; }
+    public bool IsTicking { get; protected set; }
     
     #region monobehaivour methods
     protected virtual void Awake()
@@ -15,6 +16,11 @@ public class EHActorComponent : MonoBehaviour
         {
             throw new ArgumentNullException("Actor Component Does Not Contain An Owning Actor");
         }
+    }
+
+    public virtual void Tick()
+    {
+        
     }
     #endregion monobehaviour methods
 

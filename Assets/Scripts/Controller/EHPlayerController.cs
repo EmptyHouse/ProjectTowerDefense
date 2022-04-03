@@ -39,6 +39,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Controller
 
         public override void Tick()
         {
+            base.Tick();
             UpdateControllerAxes();
         }
         #endregion monobehaivour methods

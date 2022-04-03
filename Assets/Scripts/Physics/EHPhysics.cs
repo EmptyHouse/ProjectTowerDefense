@@ -3,17 +3,23 @@ using UnityEngine;
 
 namespace EmptyHouseGames.ProjectTowerDefense.Physics
 {
-    public class EHPhysics : EHActorComponent, ITickable
+    public class EHPhysics : EHActorComponent
     {
         public Vector3 Velocity { get; set; }
     
         #region monobehaivour methods
 
+        protected override void Awake()
+        {
+            base.Awake();
+            IsTicking = true;
+        }
+
         #endregion monobehaivour methods
     
         #region override methods
 
-        public void Tick()
+        public override void Tick()
         {
             Vector3 ActorLocation = GetOwningActorLocation();
             // Want to add some collision checks here in the future

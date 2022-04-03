@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Linq;
+using EmptyHouseGames.ProjectTowerDefense.Actor;
 using UnityEngine;
 
 namespace EmptyHouseGames.ProjectTowerDefense.Manager
@@ -6,34 +8,41 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
     public class EHGameMode : EHGameManager
     {
         private EHGameState CachedGameState;
-        private List<ITickable> TickableList = new List<ITickable>();
+        private List<EHActor> TickableList = new List<EHActor>();
         #region monobehaviour methods
 
-        protected void Awake()
+        protected void Start()
         {
             //Remove This Later
-            GameObject[] allMonoObjects = GameObject.FindObjectsOfType<GameObject>();
-            foreach (GameObject obj in allMonoObjects)
+            EHActor[] AllActorsInWorld = GameObject.FindObjectsOfType<EHActor>();
+            foreach (EHActor obj in AllActorsInWorld)
             {
-                TickableList.AddRange(obj.GetComponentsInChildren<ITickable>(true));
+                if (obj.IsTicking) TickableList.Add(obj);
             }
         }
-
+        
+        // Using Tick Game to ensure that game is fully repeatable
         private void FixedUpdate()
         {
             if (CachedGameState.CurrentMatchState == EMatchState.GamePlaying)
             {
+                // Advances game forward 1 frame
                 TickGame();
             }
+            
         }
 
         #endregion monobehaviour methods
 
         private void TickGame()
         {
-            foreach (ITickable Tickable in TickableList)
+            foreach (EHActor TickableActor in TickableList)
             {
-                Tickable.Tick();
+                if (TickableActor.IsActive) continue;
+                
+                //Tick the base actor first, then all of its components
+                TickableActor.Tick();
+                TickableActor.TickComponents();
             }
         }
         

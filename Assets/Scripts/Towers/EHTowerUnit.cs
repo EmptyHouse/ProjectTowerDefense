@@ -16,7 +16,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Towers
         public float AttackRadius;
     }
     
-    public class EHTowerUnit : EHPlaceableUnit, ITickable
+    public class EHTowerUnit : EHPlaceableUnit
     {
         public FTowerStats TowerStats; //{ get; private set; }
         public EHCharacter TowerTarget { get; protected set; }
@@ -24,12 +24,16 @@ namespace EmptyHouseGames.ProjectTowerDefense.Towers
         
         #region monobehaviour methods
         // Remove this later
-        
+        protected override void Awake()
+        {
+            base.Awake();
+            IsTicking = true;
+        }
 
         #endregion monobehaviour methods
         
         #region override methods
-        public virtual void Tick()
+        public override void Tick()
         {
             
         }

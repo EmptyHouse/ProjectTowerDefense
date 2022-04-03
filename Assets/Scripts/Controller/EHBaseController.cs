@@ -5,17 +5,17 @@ using UnityEngine;
 
 namespace EmptyHouseGames.ProjectTowerDefense.Controller
 {
-    public class EHBaseController : MonoBehaviour, ITickable
+    public class EHBaseController : EHActor
     {
         public EHPawn PossessedPawn { get; private set; }
         #region monobehaviour methods
 
         protected virtual void Awake()
         {
-            
+            IsTicking = true;
         }
 
-        public virtual void Tick()
+        public override void Tick()
         {
             
         }
