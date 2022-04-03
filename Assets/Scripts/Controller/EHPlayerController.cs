@@ -27,6 +27,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Controller
 
         private Vector2 CurrentDirectionalInput;
         private PlayerControllerState ControllerState;
+        private EHGameCamera PlayerCamera;
         #region monobehaviour methods
         protected override void Awake()
         {

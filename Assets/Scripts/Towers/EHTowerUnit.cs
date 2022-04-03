@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 using EmptyHouseGames.ProjectTowerDefense.Actor;
+using EmptyHouseGames.ProjectTowerDefense.Manager;
 
 namespace EmptyHouseGames.ProjectTowerDefense.Towers
 {
@@ -20,8 +22,16 @@ namespace EmptyHouseGames.ProjectTowerDefense.Towers
         public EHCharacter TowerTarget { get; private set; }
         private HashSet<EHCharacter> AllCharactersInRange = new HashSet<EHCharacter>();
         
-        #region override methods
+        #region monobehaviour methods
+        // Remove this later
+        private void Start()
+        {
+            TowerTarget = EHGameInstance.Instance.PlayerController.PossessedCharacter;
+        }
 
+        #endregion monobehaviour methods
+        
+        #region override methods
         public virtual void Tick()
         {
             

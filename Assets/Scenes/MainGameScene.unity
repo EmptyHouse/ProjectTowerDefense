@@ -415,6 +415,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Turret
       objectReference: {fileID: 0}
+    - target: {fileID: 4951541262062601319, guid: 88489654fb9bf24459a809f29a23ada6, type: 3}
+      propertyPath: TowerStats.FireRate
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4951541262062601319, guid: 88489654fb9bf24459a809f29a23ada6, type: 3}
+      propertyPath: TowerStats.AttackRadius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4951541262062601319, guid: 88489654fb9bf24459a809f29a23ada6, type: 3}
+      propertyPath: TowerStats.DamagePerHit
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6647493640434644391, guid: 88489654fb9bf24459a809f29a23ada6, type: 3}
       propertyPath: m_RootOrder
       value: 4

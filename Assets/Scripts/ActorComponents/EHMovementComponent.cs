@@ -4,8 +4,11 @@ using EmptyHouseGames.ProjectTowerDefense.Physics;
 namespace EmptyHouseGames.ProjectTowerDefense.ActorComponent
 {
     [RequireComponent(typeof(EHPhysics))]
-    public class EHMovementComponent : EHCharacterComponent
+    public class EHMovementComponent : EHCharacterComponent, ITickable
     {
+        private const float WalkJoystickThreshold = 0.1f;
+        private const float RunJoystickThreshold = 0.6f;
+        
         public float MovementAcceleration = 50;
         public float WalkingSpeed = 10;
         public float RunningSpeed = 20;
@@ -21,12 +24,19 @@ namespace EmptyHouseGames.ProjectTowerDefense.ActorComponent
         protected override void Awake()
         {
             base.Awake();
+            PhysicsComponent = GetComponent<EHPhysics>();
         }
         private void Update()
         {
             
         }
         #endregion monobehaviour methods
+
+        public virtual void Tick()
+        {
+            Velocity = new Vector3(CurrentInput.x, 0, CurrentInput.y).normalized * WalkingSpeed;
+            PhysicsComponent.Velocity = Velocity;
+        }
 
         public void SetMoveForwardInput(float VerticalInput)
         {

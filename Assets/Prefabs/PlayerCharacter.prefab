@@ -46,7 +46,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbae25fc786294d4e9da0305905b4533, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OwningController: {fileID: 0}
 --- !u!114 &7022161302051303104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,7 +84,6 @@ GameObject:
   - component: {fileID: 7022161302341853344}
   - component: {fileID: 7022161302341853349}
   - component: {fileID: 7022161302341853346}
-  - component: {fileID: 7022161302341853347}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -156,20 +154,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &7022161302341853347
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7022161302341853345}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7022161302830377477
 GameObject:
   m_ObjectHideFlags: 0

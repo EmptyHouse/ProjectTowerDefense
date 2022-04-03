@@ -39,6 +39,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
         public EHGameState GameState { get; private set; }
         public EHGameMode GameMode { get; private set; }
         public EHGameHUD GameHUD { get; private set; }
+        public EHPlayerController PlayerController { get; private set; }
 
         #region monobehaviour methods
 
@@ -81,6 +82,8 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
             GameState?.InitializeManager(WorldSettings);
             GameMode?.InitializeManager(WorldSettings);
             GameHUD?.InitializeManager(WorldSettings);
+            // Change this to instantiate the player controller in the game mode
+            PlayerController = GameObject.FindObjectOfType<EHPlayerController>();
         }
         
         #region scene management
