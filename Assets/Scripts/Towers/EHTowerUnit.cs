@@ -19,15 +19,12 @@ namespace EmptyHouseGames.ProjectTowerDefense.Towers
     public class EHTowerUnit : EHPlaceableUnit, ITickable
     {
         public FTowerStats TowerStats; //{ get; private set; }
-        public EHCharacter TowerTarget { get; private set; }
+        public EHCharacter TowerTarget { get; protected set; }
         private HashSet<EHCharacter> AllCharactersInRange = new HashSet<EHCharacter>();
         
         #region monobehaviour methods
         // Remove this later
-        private void Start()
-        {
-            TowerTarget = EHGameInstance.Instance.PlayerController.PossessedCharacter;
-        }
+        
 
         #endregion monobehaviour methods
         

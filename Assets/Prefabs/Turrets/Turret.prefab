@@ -201,7 +201,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6647493640434644391}
-  - component: {fileID: 4951541262062601319}
+  - component: {fileID: 5512107711397256024}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Untagged
@@ -224,7 +224,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4951541262062601319
+--- !u!114 &5512107711397256024
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -233,9 +233,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2977498927910143580}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fcd59fdf6fd0614d942a01eddf23c59, type: 3}
+  m_Script: {fileID: 11500000, guid: 216350d88f694e74fa45d7217506b92b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TowerStats:
+    FireRate: 0.1
+    DamagePerHit: 5
+    AttackRadius: 10
+  RotationPivot: {fileID: 4216309972238626720}
 --- !u!1 &3735601560773737859
 GameObject:
   m_ObjectHideFlags: 0
