@@ -11,6 +11,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
     public class EHGameState : EHGameManager
     {
         public EMatchState CurrentMatchState { get; private set; }
+        // OldState, NewState
         public UnityAction<EMatchState, EMatchState> OnMatchStateChanged;
 
         public EHGameBoard ActiveGameBoard;
