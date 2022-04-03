@@ -76,8 +76,6 @@ namespace EmptyHouseGames.ProjectTowerDefense.Controller
             if (RightAxis.y != ControllerState.YAxis) MoveForward(RightAxis.y);
             if (RightAxis.x != ControllerState.XAxis) MoveRight(RightAxis.x);
         }
-    } 
-    
-    
+    }
 }
 
