@@ -35,7 +35,7 @@ public class EHGameCamera : EHActor
     {
         if (FollowTarget == null)
         {
-            Debug.Log("Assigning a null follow target to camera");
+            Debug.LogWarning("Assigning a null follow target to camera");
             return;
         }
         this.CameraTarget = FollowTarget;
