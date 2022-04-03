@@ -12,6 +12,8 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
     {
         public EMatchState CurrentMatchState { get; private set; }
         public UnityAction<EMatchState, EMatchState> OnMatchStateChanged;
+
+        public EHGameBoard ActiveGameBoard;
         
         public override void InitializeManager(FWorldSettings WorldSettings)
         {

@@ -35,6 +35,8 @@ namespace EmptyHouseGames.ProjectTowerDefense.Controller
             CurrentDirectionalInput = Vector2.zero;
             // REMOVE THIS LATER...
             if (PossessedCharacter != null) PossessPawn(PossessedCharacter);
+            // May need to set this up somewhere else
+            PlayerCamera = Camera.main.GetComponent<EHGameCamera>();
         }
 
         public override void Tick()
@@ -74,9 +76,12 @@ namespace EmptyHouseGames.ProjectTowerDefense.Controller
 
         private void UpdateControllerAxes()
         {
-            Vector2 RightAxis = MoveRightAction.ReadValue<Vector2>();
-            if (RightAxis.y != ControllerState.YAxis) MoveForward(RightAxis.y);
-            if (RightAxis.x != ControllerState.XAxis) MoveRight(RightAxis.x);
+            Vector2 MovementAxis = MoveRightAction.ReadValue<Vector2>();
+            Vector3 AdjustedInput = PlayerCamera.transform.TransformDirection(new Vector3(MovementAxis.x, 0, MovementAxis.y));
+            MovementAxis.x = AdjustedInput.x;
+            MovementAxis.y = AdjustedInput.z;
+            if (MovementAxis.y != ControllerState.YAxis) MoveForward(MovementAxis.y);
+            if (MovementAxis.x != ControllerState.XAxis) MoveRight(MovementAxis.x);
         }
     }
 }

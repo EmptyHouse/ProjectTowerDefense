@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using EmptyHouseGames.ProjectTowerDefense.Actor;
+using EmptyHouseGames.ProjectTowerDefense.Controller;
 
 namespace EmptyHouseGames.ProjectTowerDefense.Manager
 {
     public class EHGameWorld
     {
         public LinkedList<EHActor> ActiveSpawnedActors { get; private set; } = new LinkedList<EHActor>();
+        private List<EHPlayerController> AllPlayerControllers = new List<EHPlayerController>();
 
         public void InstantiateActor(EHActor ActorToSpawn, Vector3 Position, Vector3 Rotation, Transform Parent = null)
         {
