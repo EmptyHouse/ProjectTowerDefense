@@ -38,7 +38,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
         {
             foreach (EHActor TickableActor in TickableList)
             {
-                if (TickableActor.IsActive) continue;
+                if (!TickableActor.IsActive) continue;
                 
                 //Tick the base actor first, then all of its components
                 TickableActor.Tick();

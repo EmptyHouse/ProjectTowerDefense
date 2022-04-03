@@ -15,6 +15,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Actor
             base.Awake();
             PhysicsComponent = GetComponent<EHPhysics>();
             MovementComponent = GetComponent<EHMovementComponent>();
+            IsTicking = true;
         }
         #endregion monobehaviour methods
     }

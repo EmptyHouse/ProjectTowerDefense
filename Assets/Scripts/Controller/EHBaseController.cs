@@ -10,14 +10,10 @@ namespace EmptyHouseGames.ProjectTowerDefense.Controller
         public EHPawn PossessedPawn { get; private set; }
         #region monobehaviour methods
 
-        protected virtual void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             IsTicking = true;
-        }
-
-        public override void Tick()
-        {
-            
         }
         #endregion monobehaviour methods
         

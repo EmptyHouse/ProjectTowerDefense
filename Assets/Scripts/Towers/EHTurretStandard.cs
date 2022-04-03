@@ -13,8 +13,9 @@ public class EHTurretStandard : EHTowerUnit
         UpdateRotation();
     }
     
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         TowerTarget = EHGameInstance.Instance.PlayerController.PossessedCharacter;
     }
 
