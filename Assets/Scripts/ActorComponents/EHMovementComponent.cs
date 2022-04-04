@@ -35,16 +35,16 @@ namespace EmptyHouseGames.ProjectTowerDefense.ActorComponent
             PhysicsComponent.Velocity = Velocity;
         }
 
-        public void SetMoveForwardInput(float VerticalInput)
+        public void SetMovementInput(Vector2 MovementInput)
         {
-            PreviousInput.y = CurrentInput.y;
-            CurrentInput.y = VerticalInput;
+            PreviousInput = CurrentInput;
+            CurrentInput = MovementInput;
         }
 
-        public void SetMoveRightInput(float HorizontalInput)
+        public void SetLookingInput(Vector2 DirectionalInput)
         {
-            PreviousInput.x = CurrentInput.x;
-            CurrentInput.x = HorizontalInput;
+            float Rotation = Mathf.Rad2Deg * Mathf.Atan2(DirectionalInput.x, DirectionalInput.y);
+            SetOwningActorRotation(new Vector3(0, Rotation, 0));
         }
     }
 }

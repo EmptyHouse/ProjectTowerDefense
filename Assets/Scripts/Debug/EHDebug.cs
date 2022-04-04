@@ -4,28 +4,26 @@ using UnityEngine;
 
 public static class EHDebug
 {
-    public enum ELogType
+    public static void DrawLine(Vector3 OriginPoint, Vector3 Forward, float Distance)
     {
         
     }
-
-    public static void LogError(ELogType Type, string Message)
+    
+    public static void LogToScreenFrames(string Message, int Frames = 1)
     {
-        
+        #if UNITY_EDITOR
+        #endif
     }
 
-    public static void LogWarning(ELogType Type, string Message)
+    public static void LogToScreenTime(string Message, float TimeMessageActive)
     {
-        
+        #if UNITY_EDITOR
+        #endif 
     }
 
-    public static void LogToScreen(string Message, int Frames = 1)
+    private static string LogTypeToString()
     {
         
-    }
-
-    public static void LogToScreen(string Message, float TimeMessageActive)
-    {
-        
+        return "None";
     }
 }

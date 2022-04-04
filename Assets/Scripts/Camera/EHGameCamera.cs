@@ -5,6 +5,7 @@ public class EHGameCamera : EHActor
 {
     public float TargetOffset = 5;
     public float CameraFollowSpeed = 0.6f;
+    public Camera AssociatedCamera { get; private set; }
     private EHActor CameraTarget;
 
     protected override void Awake()
@@ -12,6 +13,7 @@ public class EHGameCamera : EHActor
         base.Awake();
         IsTicking = true;
         SetFollowTarget(GameObject.FindObjectOfType<EHCharacter>());
+        AssociatedCamera = GetComponent<Camera>();
     }
 
     private void OnValidate()

@@ -10,18 +10,24 @@ namespace EmptyHouseGames.ProjectTowerDefense.Controller
         {
             public float XAxis;
             public float YAxis;
+            public Vector2 LookDirectionInput;
             public bool ActionButton;
             public bool AttackButton;
         }
         
         #region const values
-        private const string MoveRightAxis = "Move";
-        private const string ActionButton = "";
-        private const string AttackButton = "";
+        private const string MovementAxis = "Move";
+        private const string ActionButton = "Action";
+        private const string AttackButton = "Shoot";
+        private const string LookDirectionAxis = "LookDirection";
+        private const string MousePosition = "MousePosition";
         #endregion const values
 
         public PlayerInput PlayerInputMap;
-        private InputAction MoveRightAction;
+        
+        private InputAction MovementAction;
+        private InputAction DirectionAction;
+        private InputAction MouseDirectionAction;
         
         public EHCharacter PossessedCharacter; //{ get; private set; }
 
@@ -42,7 +48,8 @@ namespace EmptyHouseGames.ProjectTowerDefense.Controller
         public override void Tick()
         {
             base.Tick();
-            UpdateControllerAxes();
+            UpdateMovementAxis();
+            UpdateAimingAxis();
         }
         #endregion monobehaivour methods
         
@@ -56,32 +63,46 @@ namespace EmptyHouseGames.ProjectTowerDefense.Controller
         
         public override void SetUpInput()
         {
-            MoveRightAction = PlayerInputMap.actions[MoveRightAxis];
+            MovementAction = PlayerInputMap.actions[MovementAxis];
+            // DirectionAction = PlayerInputMap.actions[LookDirectionAxis];
+            MouseDirectionAction = PlayerInputMap.actions[MousePosition];
         }
         #endregion override functions
         
         #region player controller events
-        public void MoveForward(float Axis)
-        {
-            ControllerState.YAxis = Axis;
-            PossessedCharacter.MovementComponent.SetMoveForwardInput(Axis);
-        }
-
-        public void MoveRight(float Axis)
-        {
-            ControllerState.XAxis = Axis;
-            PossessedCharacter.MovementComponent.SetMoveRightInput(Axis);
-        }
         #endregion player controller events
 
-        private void UpdateControllerAxes()
+        private void UpdateMovementAxis()
         {
-            Vector2 MovementAxis = MoveRightAction.ReadValue<Vector2>();
+            Vector2 MovementAxis = MovementAction.ReadValue<Vector2>();
+            // Adjust direction based on the camera direction
             Vector3 AdjustedInput = PlayerCamera.transform.TransformDirection(new Vector3(MovementAxis.x, 0, MovementAxis.y));
             MovementAxis.x = AdjustedInput.x;
             MovementAxis.y = AdjustedInput.z;
-            if (MovementAxis.y != ControllerState.YAxis) MoveForward(MovementAxis.y);
-            if (MovementAxis.x != ControllerState.XAxis) MoveRight(MovementAxis.x);
+            if (MovementAxis.y != ControllerState.YAxis || MovementAxis.x != ControllerState.XAxis)
+            {
+                ControllerState.XAxis = MovementAxis.x;
+                ControllerState.YAxis = MovementAxis.y;
+                PossessedCharacter.MovementComponent.SetMovementInput(MovementAxis);
+            }
+        }
+
+        private void UpdateAimingAxis()
+        {
+            Vector2 PlayerDirection = GetLookDirectionFromScreenPoint(MouseDirectionAction.ReadValue<Vector2>());
+            if (ControllerState.LookDirectionInput != PlayerDirection)
+            {
+                ControllerState.LookDirectionInput = PlayerDirection;
+                PossessedCharacter.MovementComponent.SetLookingInput(PlayerDirection);
+            }
+        }
+
+        private Vector2 GetLookDirectionFromScreenPoint(Vector3 MousePosition)
+        {
+            Ray CameraRay = PlayerCamera.AssociatedCamera.ScreenPointToRay(MousePosition);
+            Vector3 CameraHitPosition = CameraRay.origin + CameraRay.direction * (CameraRay.origin.y / -CameraRay.direction.y);
+            Vector3 DirectionFromPlayer = CameraHitPosition - PossessedCharacter.Position;
+            return new Vector2(DirectionFromPlayer.x, DirectionFromPlayer.z);
         }
     }
 }

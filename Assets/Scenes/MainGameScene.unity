@@ -140,7 +140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5310268449626589389, guid: eeea2f6469fcef545bc309617cc92262, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.74474
+      value: -14.74474
       objectReference: {fileID: 0}
     - target: {fileID: 5310268449626589389, guid: eeea2f6469fcef545bc309617cc92262, type: 3}
       propertyPath: m_LocalPosition.y
@@ -160,11 +160,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5310268449626589389, guid: eeea2f6469fcef545bc309617cc92262, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.67437977
+      value: 0.67437977
       objectReference: {fileID: 0}
     - target: {fileID: 5310268449626589389, guid: eeea2f6469fcef545bc309617cc92262, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.21263108
+      value: -0.21263108
       objectReference: {fileID: 0}
     - target: {fileID: 5310268449626589389, guid: eeea2f6469fcef545bc309617cc92262, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -172,7 +172,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5310268449626589389, guid: eeea2f6469fcef545bc309617cc92262, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 5310268449626589389, guid: eeea2f6469fcef545bc309617cc92262, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -346,11 +346,43 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1722255968, guid: f6d31348473a1534591d052d18ec63c3, type: 3}
       propertyPath: m_DefaultControlScheme
-      value: Player
+      value: KeyboardScheme
       objectReference: {fileID: 0}
     - target: {fileID: 1722255968, guid: f6d31348473a1534591d052d18ec63c3, type: 3}
       propertyPath: m_ActionEvents.Array.size
-      value: 1
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722255968, guid: f6d31348473a1534591d052d18ec63c3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_ActionId
+      value: e7031333-ad71-4fa5-91df-a1f4bf465cc9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722255968, guid: f6d31348473a1534591d052d18ec63c3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_ActionId
+      value: 507ff39f-60a7-4ed6-9e88-9e77a8d75a46
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722255968, guid: f6d31348473a1534591d052d18ec63c3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_ActionId
+      value: e937e51c-4362-47e1-b99f-6ce56474e224
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722255968, guid: f6d31348473a1534591d052d18ec63c3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_ActionId
+      value: 94ddfe16-3190-42fc-9c8e-6e08a6bd7361
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722255968, guid: f6d31348473a1534591d052d18ec63c3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_ActionName
+      value: Player/Shoot[/Mouse/leftButton]
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722255968, guid: f6d31348473a1534591d052d18ec63c3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_ActionName
+      value: Player/Action[/Mouse/rightButton]
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722255968, guid: f6d31348473a1534591d052d18ec63c3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_ActionName
+      value: Player/MousePosition
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722255968, guid: f6d31348473a1534591d052d18ec63c3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_ActionName
+      value: Player/LookDirection
       objectReference: {fileID: 0}
     - target: {fileID: 8623571629102442306, guid: f6d31348473a1534591d052d18ec63c3, type: 3}
       propertyPath: m_RootOrder
