@@ -17,7 +17,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
             EHActor[] AllActorsInWorld = GameObject.FindObjectsOfType<EHActor>();
             foreach (EHActor obj in AllActorsInWorld)
             {
-                if (obj.IsTicking) TickableList.Add(obj);
+                if (obj.IsTicking) AddActor(obj);
             }
         }
         
@@ -50,6 +50,11 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
         {
             base.InitializeManager(WorldSettings);
             CachedGameState = EHGameInstance.Instance.GameState;
+        }
+
+        public void AddActor(EHActor Actor)
+        {
+            TickableList.Add(Actor);
         }
     }
 }

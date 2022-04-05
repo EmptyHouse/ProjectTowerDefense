@@ -142,6 +142,17 @@
                 },
                 {
                     "name": "",
+                    "id": "1a1084d4-af6f-4ba3-a795-ad1d9bbbfba9",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardScheme",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "3bbc3e17-795a-485f-b346-c292f2f6f8be",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",

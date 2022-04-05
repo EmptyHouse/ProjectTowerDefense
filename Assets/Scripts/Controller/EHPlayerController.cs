@@ -30,6 +30,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Controller
         private InputAction MouseDirectionAction;
         
         public EHCharacter PossessedCharacter; //{ get; private set; }
+        public EHProjectileLauncher CachedProjectileLauncher;
 
         private Vector2 CurrentDirectionalInput;
         private PlayerControllerState ControllerState;
@@ -58,6 +59,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Controller
         {
             base.PossessPawn(Pawn);
             PossessedCharacter = (EHCharacter) Pawn;
+            CachedProjectileLauncher = PossessedCharacter.GetComponent<EHProjectileLauncher>();
             SetUpInput();
         }
         
@@ -66,11 +68,17 @@ namespace EmptyHouseGames.ProjectTowerDefense.Controller
             MovementAction = PlayerInputMap.actions[MovementAxis];
             // DirectionAction = PlayerInputMap.actions[LookDirectionAxis];
             MouseDirectionAction = PlayerInputMap.actions[MousePosition];
+            PlayerInputMap.actions[AttackButton].performed += PlayerFireEvent;
         }
         #endregion override functions
         
         #region player controller events
         #endregion player controller events
+
+        private void PlayerFireEvent(InputAction.CallbackContext Context)
+        {
+            CachedProjectileLauncher.ShootProjectile();
+        }
 
         private void UpdateMovementAxis()
         {
