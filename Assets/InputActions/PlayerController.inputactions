@@ -164,6 +164,17 @@
                 },
                 {
                     "name": "",
+                    "id": "ec8a10ff-2341-4b91-b954-ea8ab35f9cc4",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardScheme",
+                    "action": "Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "a35f088e-52a5-47da-b109-9cb6424d40a8",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",

@@ -6,7 +6,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Actor
 {
     public class EHPlayerCharacter : EHCharacter
     {
-    
+        
     }
 }
 

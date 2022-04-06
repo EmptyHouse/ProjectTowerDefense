@@ -13,13 +13,16 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
         public EMatchState CurrentMatchState { get; private set; }
         // OldState, NewState
         public UnityAction<EMatchState, EMatchState> OnMatchStateChanged;
+        public EHPlayerInventory PlayerInventory { get; private set; } = new EHPlayerInventory();
 
-        public EHGameBoard ActiveGameBoard;
+        public EHGameBoard ActiveGameBoard { get; private set; }
         
         public override void InitializeManager(FWorldSettings WorldSettings)
         {
             base.InitializeManager(WorldSettings);
             SetNewGameState(EMatchState.GamePlaying);
+            // Create board. Might be something we make in the game modekjh
+            //ActiveGameBoard = Instantiate()
         }
 
         public void SetNewGameState(EMatchState NewMatchState)
@@ -32,6 +35,11 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
             EMatchState OldMatchState = CurrentMatchState;
             CurrentMatchState = NewMatchState;
             OnMatchStateChanged?.Invoke(OldMatchState, CurrentMatchState);
+        }
+
+        public void SetActiveGameBoard(EHGameBoard GameBoard)
+        {
+            this.ActiveGameBoard = GameBoard;
         }
     }
 }

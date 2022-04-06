@@ -8,6 +8,8 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
     public class EHGameMode : EHGameManager
     {
         private EHGameState CachedGameState;
+        [SerializeField]//REMOVE THIS LATER
+        private EHGameBoard GameBoardToSpawn;
         private List<EHActor> TickableList = new List<EHActor>();
         #region monobehaviour methods
 
@@ -19,6 +21,9 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
             {
                 if (obj.IsTicking) AddActor(obj);
             }
+
+            EHGameBoard SpawnedBoard = Instantiate(GameBoardToSpawn, Vector3.zero, Quaternion.identity);
+            EHGameInstance.Instance.GameState.SetActiveGameBoard(SpawnedBoard);
         }
         
         // Using Tick Game to ensure that game is fully repeatable

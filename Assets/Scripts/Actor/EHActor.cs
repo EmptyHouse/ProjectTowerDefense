@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using EmptyHouseGames.ProjectTowerDefense.Manager;
 using UnityEngine;
 
 namespace EmptyHouseGames.ProjectTowerDefense.Actor
@@ -72,6 +73,21 @@ namespace EmptyHouseGames.ProjectTowerDefense.Actor
         {
             this.IsActive = IsActive;
             this.gameObject.SetActive(IsActive);
+        }
+
+        public T GetGameState<T>() where T : EHGameState
+        {
+            return (T)EHGameInstance.Instance.GameState;
+        }
+
+        public T GetGameMode<T>() where T : EHGameMode
+        {
+            return (T)EHGameInstance.Instance.GameMode;
+        }
+
+        public EHGameInstance GetGameInstance()
+        {
+            return EHGameInstance.Instance;
         }
     }
 }

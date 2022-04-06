@@ -1,6 +1,8 @@
+using System;
 using UnityEngine.InputSystem;
 using UnityEngine;
 using EmptyHouseGames.ProjectTowerDefense.Actor;
+using EmptyHouseGames.ProjectTowerDefense.Manager;
 
 namespace EmptyHouseGames.ProjectTowerDefense.Controller
 {
@@ -35,6 +37,9 @@ namespace EmptyHouseGames.ProjectTowerDefense.Controller
         private Vector2 CurrentDirectionalInput;
         private PlayerControllerState ControllerState;
         private EHGameCamera PlayerCamera;
+        //REMOVE THIS LATER
+        [SerializeField]
+        private EHTurretStandard TurretToSpawn;
         #region monobehaviour methods
         protected override void Awake()
         {
@@ -69,6 +74,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Controller
             // DirectionAction = PlayerInputMap.actions[LookDirectionAxis];
             MouseDirectionAction = PlayerInputMap.actions[MousePosition];
             PlayerInputMap.actions[AttackButton].performed += PlayerFireEvent;
+            PlayerInputMap.actions[ActionButton].performed += PlaceTurretOnField;
         }
         #endregion override functions
         
@@ -78,6 +84,12 @@ namespace EmptyHouseGames.ProjectTowerDefense.Controller
         private void PlayerFireEvent(InputAction.CallbackContext Context)
         {
             CachedProjectileLauncher.ShootProjectile();
+        }
+
+        private void PlaceTurretOnField(InputAction.CallbackContext Context)
+        {
+            EHGameBoard GameBoard = GetGameState<EHGameState>().ActiveGameBoard;
+            GameBoard.PlaceUnitAtWorldPoint(TurretToSpawn, PossessedCharacter.Position);
         }
 
         private void UpdateMovementAxis()
