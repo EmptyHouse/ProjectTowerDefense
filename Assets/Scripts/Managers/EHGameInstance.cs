@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using EmptyHouseGames.ProjectTowerDefense.Actor;
 using EmptyHouseGames.ProjectTowerDefense.Controller;
 using UnityEngine;
 
@@ -40,6 +41,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
         public EHGameMode GameMode { get; private set; }
         public EHGameHUD GameHUD { get; private set; }
         public EHPlayerController PlayerController { get; private set; }
+        public EHDataTableManager DataTableManager { get; private set; }
 
         #region monobehaviour methods
 
@@ -84,6 +86,16 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
             GameHUD?.InitializeManager(WorldSettings);
             // Change this to instantiate the player controller in the game mode
             PlayerController = GameObject.FindObjectOfType<EHPlayerController>();
+        }
+
+        public T CreateActor<T>(T ActorToCreate, Vector3 Position, Vector3 Rotation) where T : EHActor
+        {
+            T NewActor = Instantiate(ActorToCreate, Position, Quaternion.Euler(Rotation));
+            if (GameMode)
+            {
+                GameMode.AddActor(NewActor);
+            }
+            return NewActor;
         }
         
         #region scene management

@@ -4,7 +4,7 @@ namespace StateMachines
 {
     public class EHState : ScriptableObject
     {
-        
+        [SerializeField]
         private AnimationClip ClipToPlay;
         public int AnimationHash { get; private set; }
         
@@ -60,10 +60,7 @@ namespace StateMachines
             }
             CurrentState = State;
             CurrentState.OnStateEnter();
-            if (CurrentState.ClipToPlay != null)
-            {
-                ActorAnimator.Play();
-            }
+            ActorAnimator.Play(CurrentState.AnimationHash);
         }
     }
 }

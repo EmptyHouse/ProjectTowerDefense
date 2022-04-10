@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using EmptyHouseGames.ProjectTowerDefense.SpawnPool;
 using EmptyHouseGames.ProjectTowerDefense.Manager;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Actor
 {
     // May want to make it so that actors are rendered in the world and have a separate object that is not, but
     // can still be Ticked
-    public class EHActor : MonoBehaviour
+    public class EHActor : MonoBehaviour, IPoolable
     {
         
         public Vector3 Position { get; private set; }
@@ -89,6 +90,35 @@ namespace EmptyHouseGames.ProjectTowerDefense.Actor
         {
             return EHGameInstance.Instance;
         }
+
+        public T CreateActor<T>(T ActorToCreate, Vector3 Position, Vector3 Rotation) where T : EHActor
+        {
+            return EHGameInstance.Instance.CreateActor(ActorToCreate, Position, Rotation);
+        }
+        
+        #region interface overrides
+        public void OnCreated()
+        {
+            const string CloneKeyword = "(Clone)";
+            this.name = this.name.Substring(0, this.name.Length - CloneKeyword.Length);
+        }
+        public void OnSpawned()
+        {
+            IsActive = true;
+        }
+
+        public void OnDespawned()
+        {
+            IsActive = false;
+        }
+
+        public string GetSpawnId()
+        {
+            return this.name;
+        }
+        #endregion interface overrides
+
+        
     }
 }
 
