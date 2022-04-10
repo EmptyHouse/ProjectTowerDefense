@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using EmptyHouseGames.ProjectTowerDefense.Controller;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -13,7 +15,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
         public EMatchState CurrentMatchState { get; private set; }
         // OldState, NewState
         public UnityAction<EMatchState, EMatchState> OnMatchStateChanged;
-        public EHPlayerInventory PlayerInventory { get; private set; } = new EHPlayerInventory();
+        public List<EHPlayerController> AllActivePlayerControllers { get; private set; } = new List<EHPlayerController>();
 
         public EHGameBoard ActiveGameBoard { get; private set; }
         
