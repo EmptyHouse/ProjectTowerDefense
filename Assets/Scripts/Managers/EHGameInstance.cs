@@ -10,9 +10,9 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
     [System.Serializable]
     public struct FWorldSettings
     {
-        [FormerlySerializedAs("worldMode")] public EHGameMode GameMode;
-        [FormerlySerializedAs("worldHUD")] public EHGameHUD GameHUD;
-        [FormerlySerializedAs("worldState")] public EHGameState GameState;
+        public EHGameMode GameMode;
+        public EHGameHUD GameHUD;
+        public EHGameState GameState;
         public EHPlayerController PlayerController;
     }
     /// <summary>
