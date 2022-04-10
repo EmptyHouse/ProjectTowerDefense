@@ -4,11 +4,10 @@ using UnityEngine;
 
 namespace EmptyHouseGames.ProjectTowerDefense.Manager
 {
-    public class EHGameHUD : EHGameManager
+    public class EHGameHUD : MonoBehaviour, IWorldManager
     {
-        public override void InitializeManager(FWorldSettings WorldSettings)
+        public virtual void InitializeWorldManager(FWorldSettings WorldSettings)
         {
-            base.InitializeManager(WorldSettings);
         }
     }
 }

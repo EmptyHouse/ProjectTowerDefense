@@ -1,8 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using EmptyHouseGames.ProjectTowerDefense.Actor;
 using EmptyHouseGames.ProjectTowerDefense.Controller;
+using EmptyHouseGames.ProjectTowerDefense.DataTables;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 
 namespace EmptyHouseGames.ProjectTowerDefense.Manager
@@ -10,9 +10,9 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
     [System.Serializable]
     public struct FWorldSettings
     {
-        public EHGameMode GameMode;
-        public EHGameHUD GameHUD;
-        public EHGameState GameState;
+        [FormerlySerializedAs("worldMode")] public EHGameMode GameMode;
+        [FormerlySerializedAs("worldHUD")] public EHGameHUD GameHUD;
+        [FormerlySerializedAs("worldState")] public EHGameState GameState;
         public EHPlayerController PlayerController;
     }
     /// <summary>
@@ -39,7 +39,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
         
         public EHGameState GameState { get; private set; }
         public EHGameMode GameMode { get; private set; }
-        public EHGameHUD GameHUD { get; private set; }
+        public EHGameHUD EhGameHUD { get; private set; }
         public EHPlayerController PlayerController { get; private set; }
         public EHDataTableManager DataTableManager { get; private set; }
 
@@ -49,19 +49,23 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
         {
             if (instance != null)
             {
-                instance.InitializeGameInstance(WorldSettings);
+                instance.InitializeGameWorld(WorldSettings);
                 return;
             }
 
             instance = this;
-            InitializeGameInstance(WorldSettings);
+            InitializeGameWorld(WorldSettings);
         }
         #endregion monobehaviour methods
-        private void InitializeGameInstance(FWorldSettings WorldSettings)
+        /// <summary>
+        /// This function will be called every time we Load a new active scene
+        /// </summary>
+        /// <param name="WorldSettings"></param>
+        private void InitializeGameWorld(FWorldSettings WorldSettings)
         {
             if (GameState) Destroy(GameState.gameObject);
             if (GameMode) Destroy(GameMode.gameObject);
-            if (GameHUD) Destroy(GameHUD.gameObject);
+            if (EhGameHUD) Destroy(EhGameHUD.gameObject);
 
             if (WorldSettings.GameState != null)
             {
@@ -77,13 +81,14 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
 
             if (WorldSettings.GameHUD != null)
             {
-                GameHUD = Instantiate(WorldSettings.GameHUD);
-                GameHUD.transform.SetParent(this.transform);
+                EhGameHUD = Instantiate(WorldSettings.GameHUD);
+                EhGameHUD.transform.SetParent(this.transform);
             }
             
-            GameState?.InitializeManager(WorldSettings);
-            GameMode?.InitializeManager(WorldSettings);
-            GameHUD?.InitializeManager(WorldSettings);
+            GameState?.InitializeWorldManager(WorldSettings);
+            GameMode?.InitializeWorldManager(WorldSettings);
+            EhGameHUD?.InitializeWorldManager(WorldSettings);
+            
             // Change this to instantiate the player controller in the game mode
             PlayerController = GameObject.FindObjectOfType<EHPlayerController>();
         }

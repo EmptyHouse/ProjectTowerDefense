@@ -8,7 +8,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
         GamePaused,
         GamePlaying,
     }
-    public class EHGameState : EHGameManager
+    public class EHGameState : MonoBehaviour, IWorldManager
     {
         public EMatchState CurrentMatchState { get; private set; }
         // OldState, NewState
@@ -17,11 +17,10 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
 
         public EHGameBoard ActiveGameBoard { get; private set; }
         
-        public override void InitializeManager(FWorldSettings WorldSettings)
+        public virtual void InitializeWorldManager(FWorldSettings WorldSettings)
         {
-            base.InitializeManager(WorldSettings);
             SetNewGameState(EMatchState.GamePlaying);
-            // Create board. Might be something we make in the game modekjh
+            // Create board. Might be something we make in the game mode
             //ActiveGameBoard = Instantiate()
         }
 

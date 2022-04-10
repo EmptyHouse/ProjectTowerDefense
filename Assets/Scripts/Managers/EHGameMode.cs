@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace EmptyHouseGames.ProjectTowerDefense.Manager
 {
-    public class EHGameMode : EHGameManager
+    public class EHGameMode : MonoBehaviour, IWorldManager
     {
         private EHGameState CachedGameState;
         [SerializeField]//REMOVE THIS LATER
@@ -51,9 +51,8 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
             }
         }
         
-        public override void InitializeManager(FWorldSettings WorldSettings)
+        public virtual void InitializeWorldManager(FWorldSettings WorldSettings)
         {
-            base.InitializeManager(WorldSettings);
             CachedGameState = EHGameInstance.Instance.GameState;
         }
 
