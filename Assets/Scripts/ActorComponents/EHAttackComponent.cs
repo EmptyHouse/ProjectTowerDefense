@@ -1,18 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+using EmptyHouseGames.ProjectTowerDefense.Actor;
 
-public class EHAttackComponent : MonoBehaviour
+[System.Serializable]
+public struct FAttackData
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int DamageAmount;
+    [NonSerialized]
+    public EHActor OwningActor;
+}
+public class EHAttackComponent : EHActorComponent
+{
+    
 }

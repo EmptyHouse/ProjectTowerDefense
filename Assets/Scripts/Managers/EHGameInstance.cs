@@ -39,7 +39,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
         
         public EHGameState GameState { get; private set; }
         public EHGameMode GameMode { get; private set; }
-        public EHGameHUD EhGameHUD { get; private set; }
+        public EHGameHUD GameHUD { get; private set; }
         public EHPlayerController PlayerController { get; private set; }
         public EHDataTableManager DataTableManager { get; private set; }
 
@@ -65,7 +65,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
         {
             if (GameState) Destroy(GameState.gameObject);
             if (GameMode) Destroy(GameMode.gameObject);
-            if (EhGameHUD) Destroy(EhGameHUD.gameObject);
+            if (GameHUD) Destroy(GameHUD.gameObject);
 
             if (WorldSettings.GameState != null)
             {
@@ -81,13 +81,13 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
 
             if (WorldSettings.GameHUD != null)
             {
-                EhGameHUD = Instantiate(WorldSettings.GameHUD);
-                EhGameHUD.transform.SetParent(this.transform);
+                GameHUD = Instantiate(WorldSettings.GameHUD);
+                GameHUD.transform.SetParent(this.transform);
             }
             
             GameState?.InitializeWorldManager(WorldSettings);
             GameMode?.InitializeWorldManager(WorldSettings);
-            EhGameHUD?.InitializeWorldManager(WorldSettings);
+            GameHUD?.InitializeWorldManager(WorldSettings);
             
             // Change this to instantiate the player controller in the game mode
             PlayerController = GameObject.FindObjectOfType<EHPlayerController>();
@@ -100,6 +100,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
             {
                 GameMode.AddActor(NewActor);
             }
+            NewActor.OnCreated();
             return NewActor;
         }
         

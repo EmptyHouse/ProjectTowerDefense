@@ -1,8 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+
+
 using EmptyHouseGames.ProjectTowerDefense.Actor;
 using EmptyHouseGames.ProjectTowerDefense.Manager;
+using UnityEngine;
+
 
 public class EHMinionSpawner : EHActor
 {
@@ -14,6 +15,14 @@ public class EHMinionSpawner : EHActor
     {
         base.Awake();
         IsTicking = true;
+    }
+
+    private void OnDrawGizmos()
+    {
+#if UNITY_EDITOR
+        UnityEditor.Handles.color = Color.cyan;
+        UnityEditor.Handles.SphereHandleCap(0, transform.position, Quaternion.identity, 2, EventType.Repaint);
+#endif
     }
 
     public override void Tick()

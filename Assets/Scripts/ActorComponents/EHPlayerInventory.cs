@@ -4,10 +4,13 @@ using UnityEngine;
 
 namespace EmptyHouseGames.ProjectTowerDefense.Actor
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class EHPlayerInventory : EHActorComponent
     {
+        //
         private int TotalCurrency;
-        public List<EHTowerDataTableRow> EquippedTowers;
 
         public int GetCurrency() => TotalCurrency;
         
@@ -18,7 +21,6 @@ namespace EmptyHouseGames.ProjectTowerDefense.Actor
                 Debug.Log("Adding Negative Currency");
                 return;
             }
-
             TotalCurrency += CurrencyToAdd;
         }
 
@@ -29,7 +31,6 @@ namespace EmptyHouseGames.ProjectTowerDefense.Actor
                 Debug.Log("Subtracting negative currency");
                 return false;
             }
-
             if (TotalCurrency < CurrencyToSubtract) return false;
             TotalCurrency -= CurrencyToSubtract;
             return true;

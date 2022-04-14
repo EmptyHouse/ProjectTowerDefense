@@ -13,7 +13,19 @@ namespace EmptyHouseGames.ProjectTowerDefense.Hitboxes
         public float HitboxRadius = 1f;
         public EHitboxType Hitboxtype = EHitboxType.Hitbox;
         public Vector2 HitboxPosition = Vector2.zero;
-        
-        
+        private Collider AssociatedCollider;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            AssociatedCollider.GetComponent<Collider>();
+            IsTicking = true;
+        }
+
+        public override void Tick()
+        {
+            base.Tick();
+            
+        }
     }
 }
