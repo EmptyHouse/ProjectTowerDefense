@@ -1,11 +1,11 @@
 using EmptyHouseGames.ProjectTowerDefense.ActorComponent;
-using EmptyHouseGames.ProjectTowerDefense.Physics;
+using UnityEngine;
 
 namespace EmptyHouseGames.ProjectTowerDefense.Actor
 {
     public class EHCharacter : EHPawn
     {
-        public EHPhysics PhysicsComponent { get; private set; }
+        public Rigidbody PhysicsComponent { get; private set; }
         public EHMovementComponent MovementComponent { get; private set; }
         
         #region monobehaviour methods
@@ -13,7 +13,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Actor
         protected override void Awake()
         {
             base.Awake();
-            PhysicsComponent = GetComponent<EHPhysics>();
+            PhysicsComponent = GetComponent<Rigidbody>();
             MovementComponent = GetComponent<EHMovementComponent>();
             IsTicking = true;
         }

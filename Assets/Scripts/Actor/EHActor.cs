@@ -11,7 +11,12 @@ namespace EmptyHouseGames.ProjectTowerDefense.Actor
     /// </summary>
     public class EHActor : EHObject, IPoolable
     {
-        public Vector3 Position { get; private set; }
+        public Vector3 Position 
+        {
+            get => transform.position;
+            private set => transform.position = value;
+        }
+        
         public Vector3 Rotation { get; private set; }
         public Vector3 Scale { get; private set; }
         private List<EHActorComponent> TickableActorComponents = new List<EHActorComponent>();
@@ -48,7 +53,6 @@ namespace EmptyHouseGames.ProjectTowerDefense.Actor
         public void SetActorPosition(Vector3 Position)
         {
             this.Position = Position;
-            transform.position = Position;
         }
 
         public void SetActorRotation(Vector3 EulerAngles)
@@ -71,8 +75,6 @@ namespace EmptyHouseGames.ProjectTowerDefense.Actor
         #region interface overrides
         
         #endregion interface overrides
-
-        
     }
 }
 

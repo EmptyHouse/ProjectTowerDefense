@@ -13,8 +13,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
     public class EHGameState : MonoBehaviour, IWorldManager
     {
         public EMatchState CurrentMatchState { get; private set; }
-        // OldState, NewState
-        public UnityAction<EMatchState, EMatchState> OnMatchStateChanged;
+        public UnityAction<EMatchState, EMatchState> OnMatchStateChanged; // OldState, NewState
         public List<EHPlayerController> AllActivePlayerControllers { get; private set; } = new List<EHPlayerController>();
 
         public EHGameBoard ActiveGameBoard { get; private set; }

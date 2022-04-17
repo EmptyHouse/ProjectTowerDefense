@@ -1,9 +1,8 @@
 using EmptyHouseGames.ProjectTowerDefense.Actor;
-using EmptyHouseGames.ProjectTowerDefense.Physics;
 using UnityEngine;
 
 // NOTE: Projectiles will need to be put inside an spawn pool in the future
-[RequireComponent(typeof(EHPhysics))]
+[RequireComponent(typeof(Rigidbody))]
 public class EHBaseProjectile : EHActor
 {
     public float ProjectileRadius;
@@ -11,14 +10,14 @@ public class EHBaseProjectile : EHActor
     public float ProjectileDamage;
 
     private EHActor OwningActor;
-    private EHPhysics CachedPhysics;
+    private Rigidbody CachedPhysics;
     
     #region monobehaviour methods
 
     protected override void Awake()
     {
         base.Awake();
-        CachedPhysics = GetComponent<EHPhysics>();
+        CachedPhysics = GetComponent<Rigidbody>();
     }
 
     #endregion monobehaivour methods
@@ -30,6 +29,6 @@ public class EHBaseProjectile : EHActor
 
     public void LaunchProjectile(Vector3 LaunchDirection)
     {
-        CachedPhysics.Velocity = LaunchDirection * LaunchSpeed;
+        CachedPhysics.velocity = LaunchDirection * LaunchSpeed;
     }
 }
