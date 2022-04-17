@@ -19,6 +19,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Actor
         
         public Vector3 Rotation { get; private set; }
         public Vector3 Scale { get; private set; }
+        public Animator Anim { get; private set; }
         private List<EHActorComponent> TickableActorComponents = new List<EHActorComponent>();
 
         protected override void Awake()
@@ -27,6 +28,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Actor
             Position = transform.position;
             Rotation = transform.eulerAngles;
             Scale = transform.localScale;
+            Anim = GetComponent<Animator>();
         }
 
         protected virtual void Start()
