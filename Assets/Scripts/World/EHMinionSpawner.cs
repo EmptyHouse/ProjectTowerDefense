@@ -25,9 +25,8 @@ public class EHMinionSpawner : EHActor
 #endif
     }
 
-    public override void Tick()
+    protected virtual void FixedUpdate()
     {
-        base.Tick();
         if (TimeUntilNextSpawn < 0)
         {
             SpawnMinion();

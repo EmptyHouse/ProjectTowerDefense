@@ -28,7 +28,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.ActorComponent
         }
         #endregion monobehaviour methods
 
-        public override void Tick()
+        protected virtual void FixedUpdate()
         {
             Velocity = new Vector3(CurrentInput.x, 0, CurrentInput.y).normalized * WalkingSpeed;
             PhysicsComponent.velocity = Velocity;

@@ -17,11 +17,6 @@ public class EHActorComponent : MonoBehaviour
             throw new ArgumentNullException("Actor Component Does Not Contain An Owning Actor");
         }
     }
-
-    public virtual void Tick()
-    {
-        
-    }
     #endregion monobehaviour methods
 
     #region owning actor methods

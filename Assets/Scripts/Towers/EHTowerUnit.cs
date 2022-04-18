@@ -58,7 +58,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Towers
         #endregion monobehaviour methods
         
         #region override methods
-        public override void Tick()
+        protected virtual void FixedUpdate()
         {
             
         }

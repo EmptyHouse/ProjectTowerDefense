@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using EmptyHouseGames.ProjectTowerDefense.Actor;
@@ -15,6 +16,12 @@ namespace EmptyHouseGames.ProjectTowerDefense.Controller
             base.Awake();
             IsTicking = true;
         }
+
+        protected virtual void FixedUpdate()
+        {
+            
+        }
+
         #endregion monobehaviour methods
         
         public virtual void SetUpInput()

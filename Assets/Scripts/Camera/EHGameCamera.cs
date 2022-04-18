@@ -21,7 +21,7 @@ public class EHGameCamera : EHActor
         transform.position = TargetOffset * transform.forward;
     }
 
-    public override void Tick()
+    protected virtual void FixedUpdate()
     {
         if (!CameraTarget) return;
         UpdateCameraPosition();

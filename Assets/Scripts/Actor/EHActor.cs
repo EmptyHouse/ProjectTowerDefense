@@ -43,15 +43,6 @@ namespace EmptyHouseGames.ProjectTowerDefense.Actor
             }
         }
 
-        // Goes through our list of tickable actor components and calls their tick function.
-        public void TickComponents()
-        {
-            foreach (EHActorComponent TickableComponent in TickableActorComponents)
-            {
-                TickableComponent.Tick();
-            }
-        }
-
         public void SetActorPosition(Vector3 Position)
         {
             this.Position = Position;

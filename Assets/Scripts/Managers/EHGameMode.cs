@@ -10,7 +10,6 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
         private EHGameState CachedGameState;
         [SerializeField]//REMOVE THIS LATER
         private EHGameBoard GameBoardToSpawn;
-        private List<EHActor> TickableList = new List<EHActor>();
         #region monobehaviour methods
 
         protected void Start()
@@ -41,14 +40,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
 
         private void TickGame()
         {
-            foreach (EHActor TickableActor in TickableList)
-            {
-                if (!TickableActor.IsActive) continue;
-                
-                //Tick the base actor first, then all of its components
-                TickableActor.Tick();
-                TickableActor.TickComponents();
-            }
+            
         }
         
         public virtual void InitializeWorldManager(FWorldSettings WorldSettings)
@@ -58,7 +50,6 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
 
         public void AddActor(EHActor Actor)
         {
-            TickableList.Add(Actor);
         }
     }
 }

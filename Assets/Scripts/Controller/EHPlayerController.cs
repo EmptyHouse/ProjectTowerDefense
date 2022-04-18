@@ -51,9 +51,9 @@ namespace EmptyHouseGames.ProjectTowerDefense.Controller
             PlayerCamera = Camera.main.GetComponent<EHGameCamera>();
         }
 
-        public override void Tick()
+        protected override void FixedUpdate()
         {
-            base.Tick();
+            base.FixedUpdate();
             UpdateMovementAxis();
             UpdateAimingAxis();
         }

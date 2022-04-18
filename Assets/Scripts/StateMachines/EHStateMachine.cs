@@ -42,9 +42,8 @@ namespace StateMachines
             ActorAnimator = GetComponent<Animator>();
         }
 
-        public override void Tick()
+        protected virtual void FixedUpdate()
         {
-            base.Tick();
             CurrentState.OnStateTick();
         }
 

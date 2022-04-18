@@ -7,9 +7,9 @@ public class EHTurretStandard : EHTowerUnit
 {
     public Transform RotationPivot;
     
-    public override void Tick()
+    protected override void FixedUpdate()
     {
-        base.Tick();
+        base.FixedUpdate();
         UpdateRotation();
     }
     

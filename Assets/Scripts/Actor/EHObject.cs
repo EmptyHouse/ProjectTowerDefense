@@ -11,18 +11,12 @@ public class EHObject : MonoBehaviour
     {
         IsActive = gameObject.activeSelf;
     }
-
-    // Tick our actor once per frame tick. Set to 1/60 frames
-    public virtual void Tick()
-    {
-            
-    }
     #endregion monobehaviour methods
     
     public void SetActorActive(bool IsActive)
     {
         this.IsActive = IsActive;
-        this.gameObject.SetActive(IsActive);
+        gameObject.SetActive(IsActive);
     }
     
     public T GetGameState<T>() where T : EHGameState
@@ -42,21 +36,22 @@ public class EHObject : MonoBehaviour
     
     public void OnCreated()
     {
+        // Remove the clone keyword that is appended to every instantiated objects name
         const string CloneKeyword = "(Clone)";
-        this.name = this.name.Substring(0, this.name.Length - CloneKeyword.Length);
+        name = name.Substring(0, name.Length - CloneKeyword.Length);
     }
     public void OnSpawned()
     {
-        IsActive = true;
+        SetActorActive(true);
     }
 
     public void OnDespawned()
     {
-        IsActive = false;
+        SetActorActive(false);
     }
 
     public string GetSpawnId()
     {
-        return this.name;
+        return name;
     }
 }

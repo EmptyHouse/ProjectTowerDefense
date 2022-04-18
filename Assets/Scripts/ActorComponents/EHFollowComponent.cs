@@ -13,9 +13,4 @@ public class EHFollowComponent : EHActorComponent
         base.Awake();
         IsTicking = true;
     }
-
-    public override void Tick()
-    {
-        base.Tick();
-    }
 }
