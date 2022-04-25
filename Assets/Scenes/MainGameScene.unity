@@ -123,12 +123,35 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &480013472 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7022161302051303135, guid: 61d8a61cc538e6b4282ce22f669a2fd8, type: 3}
+  m_PrefabInstance: {fileID: 7022161300910888305}
+  m_PrefabAsset: {fileID: 0}
+--- !u!143 &480013474
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480013472}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1243103080 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8138332518184040617, guid: 61d8a61cc538e6b4282ce22f669a2fd8, type: 3}
   m_PrefabInstance: {fileID: 7022161300910888305}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 480013472}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: edde6687a6b98ab4182f0ffbf3fb8f9e, type: 3}
@@ -298,7 +321,8 @@ PrefabInstance:
       propertyPath: m_CollisionDetection
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 222816631, guid: 61d8a61cc538e6b4282ce22f669a2fd8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 61d8a61cc538e6b4282ce22f669a2fd8, type: 3}
 --- !u!1001 &7898933087650718598
 PrefabInstance:

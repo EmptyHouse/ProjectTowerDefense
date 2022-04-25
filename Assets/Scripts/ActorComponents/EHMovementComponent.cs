@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace EmptyHouseGames.ProjectTowerDefense.ActorComponent
 {
-    [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(CharacterController))]
     public class EHMovementComponent : EHCharacterComponent
     {
         private const float WalkJoystickThreshold = 0.1f;
@@ -12,7 +12,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.ActorComponent
         public float WalkingSpeed = 10;
         public float RunningSpeed = 20;
 
-        private Rigidbody PhysicsComponent;
+        private CharacterController PhysicsComponent;
 
         private Vector2 CurrentInput;
         private Vector2 PreviousInput;
@@ -23,15 +23,15 @@ namespace EmptyHouseGames.ProjectTowerDefense.ActorComponent
         protected override void Awake()
         {
             base.Awake();
-            PhysicsComponent = GetComponent<Rigidbody>();
+            PhysicsComponent = GetComponent<CharacterController>();
             IsTicking = true;
         }
         #endregion monobehaviour methods
 
-        protected virtual void FixedUpdate()
+        protected virtual void Update()
         {
             Velocity = new Vector3(CurrentInput.x, 0, CurrentInput.y).normalized * WalkingSpeed;
-            PhysicsComponent.velocity = Velocity;
+            PhysicsComponent.Move(Velocity * Time.deltaTime);
         }
 
         public void SetMovementInput(Vector2 MovementInput)

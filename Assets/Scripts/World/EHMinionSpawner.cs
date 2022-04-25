@@ -8,13 +8,14 @@ using UnityEngine;
 public class EHMinionSpawner : EHActor
 {
     public EHBaseMinion MinionToSpawn;
+    public Transform DestinationPoint;
     public float DelayBetweenSpawn;
     private float TimeUntilNextSpawn;
 
     protected override void Awake()
     {
         base.Awake();
-        IsTicking = true;
+        TimeUntilNextSpawn = Time.time;
     }
 
     private void OnDrawGizmos()
@@ -27,15 +28,16 @@ public class EHMinionSpawner : EHActor
 
     protected virtual void FixedUpdate()
     {
-        if (TimeUntilNextSpawn < 0)
+        if (TimeUntilNextSpawn < Time.time)
         {
             SpawnMinion();
+            TimeUntilNextSpawn += DelayBetweenSpawn;
         }
     }
 
     private void SpawnMinion()
     {
-        EHBaseMinion Minion = Instantiate(MinionToSpawn, transform.position, transform.rotation);
-        GetGameMode<EHGameMode>().AddActor(Minion);
+        EHBaseMinion Minion = CreateActor(MinionToSpawn, Position, Rotation);
+        Minion.FollowComponent.SetNextDestination(DestinationPoint);
     }
 }

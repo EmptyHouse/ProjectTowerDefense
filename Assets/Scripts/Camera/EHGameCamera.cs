@@ -21,7 +21,7 @@ public class EHGameCamera : EHActor
         transform.position = TargetOffset * transform.forward;
     }
 
-    protected virtual void FixedUpdate()
+    protected virtual void Update()
     {
         if (!CameraTarget) return;
         UpdateCameraPosition();
@@ -30,7 +30,7 @@ public class EHGameCamera : EHActor
     private void UpdateCameraPosition()
     {
         Vector3 TargetPosition = CameraTarget.Position + (transform.forward * TargetOffset);
-        SetActorPosition(Vector3.Lerp(Position, TargetPosition, CameraFollowSpeed * EHTime.DeltaTime));
+        SetActorPosition(Vector3.Lerp(Position, TargetPosition, CameraFollowSpeed * Time.deltaTime));
     }
 
     public void SetFollowTarget(EHActor FollowTarget)
