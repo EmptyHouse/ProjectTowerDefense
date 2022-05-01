@@ -9,6 +9,13 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
         public virtual void InitializeWorldManager(FWorldSettings WorldSettings)
         {
         }
+
+        public void ShowGenericPopup(string Title, string Message)
+        {
+            
+        }
+        
+        
     }
 }
 

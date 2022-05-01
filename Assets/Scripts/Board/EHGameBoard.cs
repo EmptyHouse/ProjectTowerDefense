@@ -4,6 +4,7 @@ using EmptyHouseGames.ProjectTowerDefense.Manager;
 using EmptyHouseGames.ProjectTowerDefense.Towers;
 using EmptyHouseGames.ProjectTowerDefense.Controller;
 using UnityEngine;
+using UnityEngine.Events;
 
 public struct FBoardTile
 {
@@ -22,6 +23,7 @@ public enum EBoardPlacementFailure
 
 public class EHGameBoard : EHActor
 {
+    public UnityAction OnBoardStateChanged;
     public const float TileSize = 5f;
     
     public EHGameBoard ActiveGameBoard { get; private set; }
