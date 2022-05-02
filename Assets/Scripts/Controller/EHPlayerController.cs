@@ -2,6 +2,7 @@ using System;
 using UnityEngine.InputSystem;
 using UnityEngine;
 using EmptyHouseGames.ProjectTowerDefense.Actor;
+using EmptyHouseGames.ProjectTowerDefense.DataTables;
 using EmptyHouseGames.ProjectTowerDefense.Manager;
 
 namespace EmptyHouseGames.ProjectTowerDefense.Controller
@@ -16,8 +17,10 @@ namespace EmptyHouseGames.ProjectTowerDefense.Controller
             public bool ActionButton;
             public bool AttackButton;
         }
-        
+
         #region const values
+
+        
         private const string MovementAxis = "Move";
         private const string ActionButton = "Action";
         private const string AttackButton = "Shoot";
@@ -39,7 +42,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Controller
         private EHGameCamera PlayerCamera;
         //REMOVE THIS LATER
         [SerializeField]
-        private EHTurretStandard TurretToSpawn;
+        private string TurretIdString;
         #region monobehaviour methods
         protected override void Awake()
         {
@@ -89,7 +92,8 @@ namespace EmptyHouseGames.ProjectTowerDefense.Controller
         private void PlaceTurretOnField(InputAction.CallbackContext Context)
         {
             EHGameBoard GameBoard = GetGameState<EHGameState>().ActiveGameBoard;
-            GameBoard.PlaceUnitAtWorldPoint(TurretToSpawn, PossessedCharacter.Position);
+            EHTowerDataTableRow TowerRow = GetGameInstance().DataTableManager.GetTowerDataRow(TurretIdString);
+            GameBoard.PlaceUnitAtWorldPoint(this, PossessedCharacter.Position, TowerRow.TowerUnit);
         }
 
         private void UpdateMovementAxis()
@@ -124,6 +128,8 @@ namespace EmptyHouseGames.ProjectTowerDefense.Controller
             Vector3 DirectionFromPlayer = CameraHitPosition - PossessedCharacter.Position;
             return new Vector2(DirectionFromPlayer.x, DirectionFromPlayer.z);
         }
+
+        
     }
 }
 

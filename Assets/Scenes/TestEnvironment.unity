@@ -485,7 +485,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MinionToSpawn: {fileID: 9147156871940060200, guid: 0a62410bd2bf5924d9db454ca2fdef98, type: 3}
   DestinationPoint: {fileID: 957186312}
-  DelayBetweenSpawn: 5
+  DelayBetweenSpawn: 0.5
 --- !u!1 &1198328857
 GameObject:
   m_ObjectHideFlags: 0

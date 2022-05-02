@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using EmptyHouseGames.ProjectTowerDefense.Actor;
-using EmptyHouseGames.ProjectTowerDefense.Manager;
 using EmptyHouseGames.ProjectTowerDefense.Towers;
 using EmptyHouseGames.ProjectTowerDefense.Controller;
 using UnityEngine;
@@ -22,11 +21,11 @@ public enum EBoardPlacementFailure
 
 public class EHGameBoard : EHActor
 {
-    public const float TileSize = 5f;
-    
+    public const float BoardTileSize = 5f;
+
     public EHGameBoard ActiveGameBoard { get; private set; }
     public Vector2Int BoardSize = new Vector2Int(10, 10);
-    private List<FBoardTile> AllBoardTiles = new List<FBoardTile>();
+    private FBoardTile[] AllBoardTiles;
     private List<EHPlaceableUnit> AllPlacedUnits = new List<EHPlaceableUnit>();
 
     #region monobehaviour methods
@@ -34,79 +33,82 @@ public class EHGameBoard : EHActor
     protected override void Awake()
     {
         base.Awake();
-        
-        for (int i = 0; i < AllBoardTiles.Count; ++i)
+        int TileCount = BoardSize.x * BoardSize.y;
+        AllBoardTiles = new FBoardTile[TileCount];
+        // We may want to skip this step in the future
+        for (int i = 0; i < TileCount; ++i)
         {
-            FBoardTile BoardPosition = new FBoardTile();
-            BoardPosition.BoardIndex.x = i % BoardSize.x;
-            BoardPosition.BoardIndex.y = i / BoardSize.x;
-            AllBoardTiles.Add(new FBoardTile());
+            AllBoardTiles[i].BoardIndex.x = i % BoardSize.x;
+            AllBoardTiles[i].BoardIndex.y = i / BoardSize.x;
         }
     }
 
     #endregion monobehaviour methods
 
-    public FBoardTile GetBoardPositionFromWorldPosition(Vector3 WorldPosition)
+    public bool GetBoardTile(Vector2Int BoardPosition, out FBoardTile BoardTile)
     {
-        return GetBoardTile(0, 0);
-    }
-
-    public FBoardTile GetBoardTile(Vector2Int BoardPosition)
-    {
-        return GetBoardTile(BoardPosition.x, BoardPosition.y);
+        return GetBoardTile(BoardPosition.x, BoardPosition.y, out BoardTile);
     }
     
-    public FBoardTile GetBoardTile(int X, int Y)
+    public bool GetBoardTile(int X, int Y, out FBoardTile BoardTile)
     {
         int TileIndex = (BoardSize.x * Y) + X;
-        if (TileIndex < 0 || TileIndex >= AllBoardTiles.Count) return new FBoardTile();
-        return AllBoardTiles[TileIndex];
+
+        if (TileIndex < 0 || TileIndex >= AllBoardTiles.Length)
+        {
+            BoardTile = default;
+            return false;
+        }
+        BoardTile = AllBoardTiles[TileIndex];
+        return true;
     }
 
-    public void PlaceUnitAtWorldPoint(EHPlaceableUnit Unit, Vector3 WorldPosition)
+    public void PlaceUnitAtWorldPoint(EHPlayerController SourcePlayer, Vector3 WorldPosition, EHPlaceableUnit Unit)
     {
-        PlaceUnitAtBoardPosition(Unit, WorldPositionToBoardPosition(WorldPosition));
-    }
-
-    public void PlaceUnitAtBoardPosition(EHPlaceableUnit Unit, Vector2Int BoardPosition)
-    {
-        EHPlaceableUnit NewUnit =
-            Instantiate<EHPlaceableUnit>(Unit, BoardPositionToWorldPosition(BoardPosition), Quaternion.identity);
-        AllPlacedUnits.Add(NewUnit);
-        GetGameMode<EHGameMode>().AddActor(NewUnit);
-
-    }
-
-    public Vector3 BoardPositionToWorldPosition(Vector2Int BoardPosition)
-    {
-        return new Vector3(BoardPosition.x * TileSize, 0, BoardPosition.y * TileSize);
-    }
-
-    public Vector2Int WorldPositionToBoardPosition(Vector3 WorldPosition)
-    {
-        return new Vector2Int(Mathf.FloorToInt(WorldPosition.x / TileSize), Mathf.FloorToInt(WorldPosition.z / TileSize));
+        SetUnitAtTilePosition(SourcePlayer, WorldSpaceToBoardSpace(WorldPosition), Unit);
     }
 
     public bool IsTileOccupied(Vector2Int BoardPosition)
     {
-        FBoardTile BoardTile = GetBoardTile(BoardPosition);
-        return BoardTile.IsOccupied;
+        return GetBoardTile(BoardPosition, out FBoardTile BoardTile) ? BoardTile.IsOccupied : false;
+    }
+
+    public bool IsTileOccupied(int X, int Y)
+    {
+        return GetBoardTile(X, Y, out FBoardTile BoardTile) ? BoardTile.IsOccupied : false;
     }
 
     // We will place the unit at this position as well as charge the player that added the tile at this point
     public bool SetUnitAtTilePosition(EHPlayerController SourcePlayer, Vector2Int BoardPosition, EHPlaceableUnit BoardUnit)
     {
         if (BoardUnit == null) return false;
-        FBoardTile BoardTile = GetBoardTile(BoardPosition);
+        if (!GetBoardTile(BoardPosition, out FBoardTile BoardTile)) return false;
         if (BoardTile.IsOccupied) return false;
-        BoardTile.Unit = BoardUnit;
-        // TO-DO instantiate object at this position and charge the player for placing the item at this point
+        EHPlaceableUnit NewUnit = CreateActor(BoardUnit, BoardSpaceToWorldSpace(BoardPosition), Vector3.zero);
+        BoardTile.Unit = NewUnit;
         return true;
     }
+    
+    
 
-    public bool RemoveUnitAtTilePosition()
+    public bool RemoveUnitAtTilePosition(EHPlayerController SourcePlayer, Vector2Int BoardPosition)
     {
-        // TO-DO remove a valid unit from this position and return money to player
+        if (!GetBoardTile(BoardPosition, out FBoardTile BoardTile)) return false;
+        
+        if (!BoardTile.Unit)
+        {
+            return false;
+        }
+        Destroy(BoardTile.Unit.gameObject);
+        BoardTile.Unit = null;
         return false;
     }
+    
+    #region static functions
+    public static Vector2Int WorldSpaceToBoardSpace(Vector3 WorldSpace)
+        => new Vector2Int(Mathf.FloorToInt(WorldSpace.x / BoardTileSize), Mathf.FloorToInt(WorldSpace.x / BoardTileSize));
+
+    public static Vector3 BoardSpaceToWorldSpace(Vector2Int BoardSpace) =>
+        new Vector3(BoardSpace.x * BoardTileSize, BoardSpace.y * BoardTileSize);
+    #endregion static functions
 }

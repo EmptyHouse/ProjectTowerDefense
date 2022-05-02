@@ -55,6 +55,9 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
 
             instance = this;
             InitializeGameWorld(WorldSettings);
+            // Initialize one time start managers
+            DataTableManager = new EHDataTableManager();
+            DataTableManager.InitializeManager();
         }
         #endregion monobehaviour methods
         /// <summary>
