@@ -3,6 +3,7 @@ using EmptyHouseGames.ProjectTowerDefense.Actor;
 using EmptyHouseGames.ProjectTowerDefense.Towers;
 using EmptyHouseGames.ProjectTowerDefense.Controller;
 using UnityEngine;
+using UnityEngine.Events;
 
 public struct FBoardTile
 {
@@ -23,6 +24,7 @@ public class EHGameBoard : EHActor
 {
     public const float BoardTileSize = 5f;
 
+    public UnityAction OnBoardStateChanged;
     public EHGameBoard ActiveGameBoard { get; private set; }
     public Vector2Int BoardSize = new Vector2Int(10, 10);
     private FBoardTile[] AllBoardTiles;
