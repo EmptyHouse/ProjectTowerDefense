@@ -164,6 +164,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7637128952391859914, guid: c8cecb22e2d534e498968f24cdd0a215, type: 3}
+      propertyPath: AvailableTowers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6872404893946005548, guid: c8cecb22e2d534e498968f24cdd0a215, type: 3}
       propertyPath: m_RootOrder
       value: 4
