@@ -14,6 +14,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
         public EHGameHUD GameHUD;
         public EHGameState GameState;
         public EHPlayerController PlayerController;
+        public EHPlayerState PlayerState;
     }
     /// <summary>
     /// The Game Instance is an object that persists throughout the duration of the game's life. You can use this to reference
@@ -40,7 +41,9 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
         public EHGameState GameState { get; private set; }
         public EHGameMode GameMode { get; private set; }
         public EHGameHUD GameHUD { get; private set; }
+        // May want to use a list for our player controller and player state in the future
         public EHPlayerController PlayerController { get; private set; }
+        public EHPlayerState PlayerState { get; private set; }
         public EHDataTableManager DataTableManager { get; private set; }
 
         #region monobehaviour methods
@@ -69,6 +72,8 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
             if (GameState) Destroy(GameState.gameObject);
             if (GameMode) Destroy(GameMode.gameObject);
             if (GameHUD) Destroy(GameHUD.gameObject);
+            if (PlayerController) Destroy(PlayerController.gameObject);
+            if (PlayerState) Destroy(PlayerState.gameObject);
 
             if (WorldSettings.GameState != null)
             {
@@ -94,6 +99,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
             
             // Change this to instantiate the player controller in the game mode
             PlayerController = GameObject.FindObjectOfType<EHPlayerController>();
+            PlayerState = GameObject.FindObjectOfType<EHPlayerState>();
         }
 
         public T CreateActor<T>(T ActorToCreate, Vector3 Position, Vector3 Rotation) where T : EHActor
@@ -103,10 +109,11 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
             {
                 GameMode.AddActor(NewActor);
             }
+
             NewActor.OnCreated();
             return NewActor;
         }
-        
+
         #region scene management
 
         public void LoadNewScene()
