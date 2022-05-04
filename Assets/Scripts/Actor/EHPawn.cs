@@ -4,11 +4,11 @@ namespace EmptyHouseGames.ProjectTowerDefense.Actor
 {
     public class EHPawn : EHActor
     {
-        public EHBaseController OwningController { get; private set; }
+        public EHPlayerState OwningPlayerState { get; private set; }
 
-        public virtual void OnPawnPossessed(EHBaseController Controller)
+        public virtual void SetOwningPlayerState(EHPlayerState PlayerState)
         {
-            OwningController = Controller;
+            OwningPlayerState = PlayerState;
         }
     }
 }

@@ -92,7 +92,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Controller
         private void PlaceTurretOnField(InputAction.CallbackContext Context)
         {
             EHGameBoard GameBoard = GetGameState<EHGameState>().ActiveGameBoard;
-            EHTowerDataTableRow TowerRow = GetGameInstance().DataTableManager.GetTowerDataRow(TurretIdString);
+            EHTowerDataTableRow TowerRow = GetGameInstance().GetDataTableManager().GetTowerDataRow(TurretIdString);
             GameBoard.PlaceUnitAtWorldPoint(this, PossessedCharacter.Position, TowerRow.TowerUnit);
         }
 

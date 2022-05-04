@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using EmptyHouseGames.ProjectTowerDefense.Actor;
 using EmptyHouseGames.Utility;
 using UnityEngine;
 using UnityEngine.Events;
@@ -16,6 +17,22 @@ public class EHPlayerState : MonoBehaviour
     public int TotalCredits { get; private set; }
     public List<string> AvailableTowers;
     public int CurrentlySelectedIndex { get; private set; } = 0;
+    public EHPawn OwnedPawn { get; private set; }
+
+    public void PossessPawn(EHPawn Pawn)
+    {
+        if (this.OwnedPawn != null)
+        {
+            this.OwnedPawn.SetOwningPlayerState(null);
+        }
+        this.OwnedPawn = Pawn;
+        this.OwnedPawn.SetOwningPlayerState(this);
+    }
+
+    public void UnPossessPawn()
+    {
+        this.OwnedPawn = null;
+    }
 
     public int NextPlaceableUnit(out string NextTowerId)
     {

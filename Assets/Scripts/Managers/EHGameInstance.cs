@@ -1,3 +1,4 @@
+using System.Data;
 using EmptyHouseGames.ProjectTowerDefense.Actor;
 using EmptyHouseGames.ProjectTowerDefense.Controller;
 using EmptyHouseGames.ProjectTowerDefense.DataTables;
@@ -44,7 +45,8 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
         // May want to use a list for our player controller and player state in the future
         public EHPlayerController PlayerController { get; private set; }
         public EHPlayerState PlayerState { get; private set; }
-        public EHDataTableManager DataTableManager { get; private set; }
+        [SerializeField]
+        private EHDataTableManager DataTableManager;
 
         #region monobehaviour methods
 
@@ -59,8 +61,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
             instance = this;
             InitializeGameWorld(WorldSettings);
             // Initialize one time start managers
-            DataTableManager = new EHDataTableManager();
-            DataTableManager.InitializeManager();
+            DataTableManager?.InitializeManager();
         }
         #endregion monobehaviour methods
         /// <summary>
@@ -121,5 +122,13 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
             
         }
         #endregion scene managment
+        
+        #region get managers
+        
+        public EHDataTableManager GetDataTableManager()
+        {
+            return DataTableManager;
+        }
+        #endregion get managers
     }
 }
