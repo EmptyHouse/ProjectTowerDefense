@@ -37,7 +37,7 @@ public class EHMinionSpawner : EHActor
 
     private void SpawnMinion()
     {
-        EHBaseMinion Minion = CreateActor(MinionToSpawn, Position, Rotation);
+        EHBaseMinion Minion = CreateActor(MinionToSpawn, GetActorPosition(), GetActorEulerRotation());
         Minion.FollowComponent.SetNextDestination(DestinationPoint);
     }
 }

@@ -24,7 +24,7 @@ public class EHTurretStandard : EHTowerUnit
         if (TowerTarget == null) return;
         
         Vector3 Forward = transform.forward;
-        Vector3 TargetDirection = TowerTarget.Position - Position;
+        Vector3 TargetDirection = TowerTarget.GetActorPosition() - GetActorPosition();
         float angle = Mathf.Atan2(TargetDirection.x, TargetDirection.z);
         RotationPivot.localRotation = Quaternion.Euler(0, angle * Mathf.Rad2Deg, 0);
     }

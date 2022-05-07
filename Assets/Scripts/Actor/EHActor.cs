@@ -11,23 +11,12 @@ namespace EmptyHouseGames.ProjectTowerDefense.Actor
     /// </summary>
     public class EHActor : EHObject, IPoolable
     {
-        public Vector3 Position 
-        {
-            get => transform.position;
-            private set => transform.position = value;
-        }
-        
-        public Vector3 Rotation { get; private set; }
-        public Vector3 Scale { get; private set; }
         public Animator Anim { get; private set; }
         private List<EHActorComponent> TickableActorComponents = new List<EHActorComponent>();
 
         protected override void Awake()
         {
             base.Awake();
-            Position = transform.position;
-            Rotation = transform.eulerAngles;
-            Scale = transform.localScale;
             Anim = GetComponent<Animator>();
         }
 
@@ -42,27 +31,78 @@ namespace EmptyHouseGames.ProjectTowerDefense.Actor
                 }
             }
         }
+        
+        #region getter/setter methods
 
+        public Vector3 GetActorPosition()
+        {
+            return this.transform.position;
+        }
+
+        public Vector3 GetActorEulerRotation()
+        {
+            return this.transform.eulerAngles;
+        }
+
+        public Quaternion GetActorRotation()
+        {
+            return transform.rotation;
+        }
+
+        public Vector3 GetActorForwardVector()
+        {
+            return transform.forward;
+        }
+
+        public Vector3 GetActorRightVector()
+        {
+            return transform.right;
+        }
+
+        public Vector3 GetActorScale()
+        {
+            return transform.localScale;
+        }
+        
         public void SetActorPosition(Vector3 Position)
         {
-            this.Position = Position;
+            this.transform.position = Position;
         }
 
         public void SetActorRotation(Vector3 EulerAngles)
         {
-            this.Rotation = EulerAngles;
             transform.rotation = Quaternion.Euler(EulerAngles);
+        }
+
+        public void SetActorRotation(Quaternion Rotation)
+        {
+            transform.rotation = Rotation;
+        }
+
+        public void SetActorForwardVector(Vector3 ForwardVector)
+        {
+            this.transform.forward = ForwardVector;
+        }
+
+        public void SetActorRightVector(Vector3 RightVector)
+        {
+            transform.right = RightVector;
         }
 
         public void SetActorScale(Vector3 Scale)
         {
-            this.Scale = Scale;
             transform.localScale = Scale;
+        }
+        #endregion getter/setter methods
+
+        public T CreateActor<T>(T ActorToCreate, Vector3 Position, Quaternion Rotation) where T : EHActor
+        {
+            return EHGameInstance.Instance.CreateActor(ActorToCreate, Position, Rotation);
         }
 
         public T CreateActor<T>(T ActorToCreate, Vector3 Position, Vector3 Rotation) where T : EHActor
         {
-            return EHGameInstance.Instance.CreateActor(ActorToCreate, Position, Rotation);
+            return CreateActor(ActorToCreate, Position, Quaternion.Euler(Rotation));
         }
         
         #region interface overrides

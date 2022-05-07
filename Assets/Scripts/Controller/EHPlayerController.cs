@@ -93,7 +93,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Controller
         {
             EHGameBoard GameBoard = GetGameState<EHGameState>().ActiveGameBoard;
             EHTowerDataTableRow TowerRow = GetGameInstance().GetDataTableManager().GetTowerDataRow(TurretIdString);
-            GameBoard.PlaceUnitAtWorldPoint(this, PossessedCharacter.Position, TowerRow.TowerUnit);
+            GameBoard.PlaceUnitAtWorldPoint(this, PossessedCharacter.GetActorPosition(), TowerRow.TowerUnit);
         }
 
         private void UpdateMovementAxis()
@@ -125,7 +125,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Controller
         {
             Ray CameraRay = PlayerCamera.AssociatedCamera.ScreenPointToRay(MousePosition);
             Vector3 CameraHitPosition = CameraRay.origin + CameraRay.direction * (CameraRay.origin.y / -CameraRay.direction.y);
-            Vector3 DirectionFromPlayer = CameraHitPosition - PossessedCharacter.Position;
+            Vector3 DirectionFromPlayer = CameraHitPosition - PossessedCharacter.GetActorPosition();
             return new Vector2(DirectionFromPlayer.x, DirectionFromPlayer.z);
         }
 

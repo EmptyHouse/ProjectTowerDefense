@@ -30,5 +30,6 @@ public class EHBaseProjectile : EHActor
     public void LaunchProjectile(Vector3 LaunchDirection)
     {
         CachedPhysics.velocity = LaunchDirection * LaunchSpeed;
+        SetActorForwardVector(CachedPhysics.velocity);
     }
 }

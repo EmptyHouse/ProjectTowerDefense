@@ -30,8 +30,8 @@ public class EHGameCamera : EHActor
 
     private void UpdateCameraPosition()
     {
-        Vector3 TargetPosition = CameraTarget.Position + (transform.forward * TargetOffset);
-        SetActorPosition(Vector3.Lerp(Position, TargetPosition, CameraFollowSpeed * Time.deltaTime));
+        Vector3 TargetPosition = CameraTarget.GetActorPosition() + (transform.forward * TargetOffset);
+        SetActorPosition(Vector3.Lerp(GetActorPosition(), TargetPosition, CameraFollowSpeed * Time.deltaTime));
     }
 
     public void SetFollowTarget(EHActor FollowTarget)

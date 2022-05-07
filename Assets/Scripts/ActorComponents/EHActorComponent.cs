@@ -23,17 +23,22 @@ public class EHActorComponent : MonoBehaviour
 
     public Vector3 GetOwningActorLocation()
     {
-        return OwningActor.Position;
+        return OwningActor.GetActorPosition();
     }
 
-    public Vector3 GetOwningActorRotation()
+    public Vector3 GetActorEulerRotation()
     {
-        return OwningActor.Rotation;
+        return OwningActor.GetActorEulerRotation();
+    }
+
+    public Quaternion GetActorRotation()
+    {
+        return OwningActor.GetActorRotation();
     }
 
     public Vector3 GetOwningActorScale()
     {
-        return OwningActor.Scale;
+        return OwningActor.GetActorScale();
     }
     
     public void SetOwningActorLocation(Vector3 Location)
@@ -42,6 +47,11 @@ public class EHActorComponent : MonoBehaviour
     }
 
     public void SetOwningActorRotation(Vector3 Rotation)
+    {
+        OwningActor.SetActorRotation(Rotation);
+    }
+
+    public void SetOwningActorRotation(Quaternion Rotation)
     {
         OwningActor.SetActorRotation(Rotation);
     }

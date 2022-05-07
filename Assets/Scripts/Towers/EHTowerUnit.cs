@@ -71,6 +71,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Towers
 
         public bool IsTargetInRange(Vector3 TargetPosition)
         {
+            Vector3 Position = GetActorPosition();
             Vector2 OffsetPosition = new Vector2(Position.x - TargetPosition.x, Position.z - TargetPosition.z);
             return Vector2.SqrMagnitude(OffsetPosition) < TowerStats.AttackRadius * TowerStats.AttackRadius;
         }
@@ -98,9 +99,11 @@ namespace EmptyHouseGames.ProjectTowerDefense.Towers
         {
             EHCharacter ClosestTarget = null;
             float MinDistance = 0;
+            Vector3 Position = GetActorPosition();
             foreach (EHCharacter Target in AllEnemiesInRange)
             {
-                Vector2 OffsetPosition = new Vector2(Position.x - Target.Position.x, Position.z - Target.Position.z);
+                Vector3 TargetPosition = Target.GetActorPosition();
+                Vector2 OffsetPosition = new Vector2(Position.x - TargetPosition.x, Position.z - TargetPosition.z);
                 float TargetSqrDistance = OffsetPosition.SqrMagnitude();
                 if (ClosestTarget == null || TargetSqrDistance < MinDistance)
                 {

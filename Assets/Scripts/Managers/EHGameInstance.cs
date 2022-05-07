@@ -103,9 +103,9 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
             PlayerState = GameObject.FindObjectOfType<EHPlayerState>();
         }
 
-        public T CreateActor<T>(T ActorToCreate, Vector3 Position, Vector3 Rotation) where T : EHActor
+        public T CreateActor<T>(T ActorToCreate, Vector3 Position, Quaternion Rotation) where T : EHActor
         {
-            T NewActor = Instantiate(ActorToCreate, Position, Quaternion.Euler(Rotation));
+            T NewActor = Instantiate(ActorToCreate, Position, Rotation);
             if (GameMode)
             {
                 GameMode.AddActor(NewActor);
