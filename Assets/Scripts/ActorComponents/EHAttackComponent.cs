@@ -3,7 +3,7 @@ using UnityEngine;
 using EmptyHouseGames.ProjectTowerDefense.Actor;
 
 [System.Serializable]
-public struct FAttackData
+public struct FHitData
 {
     public int DamageAmount;
     [NonSerialized]

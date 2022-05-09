@@ -43,7 +43,6 @@ GameObject:
   - component: {fileID: 1201643968}
   - component: {fileID: 1201643971}
   - component: {fileID: 1201643970}
-  - component: {fileID: 1201643969}
   m_Layer: 0
   m_Name: Amogus
   m_TagString: Untagged
@@ -114,19 +113,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1201643969
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1201643967}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1308167864778898994
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,7 +206,8 @@ GameObject:
   - component: {fileID: 3108281995517204078}
   - component: {fileID: 9147156871940060200}
   - component: {fileID: 4793407082085696047}
-  m_Layer: 0
+  - component: {fileID: 3647181757160991424}
+  m_Layer: 7
   m_Name: SmallMinion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,7 +242,7 @@ CapsuleCollider:
   m_Radius: 0.6
   m_Height: 1.6
   m_Direction: 1
-  m_Center: {x: 0, y: 0.4, z: 0}
+  m_Center: {x: 0, y: 0.78, z: 0}
 --- !u!114 &9147156871940060200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,3 +268,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 4
+--- !u!114 &3647181757160991424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6655681566838165126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2cb272a4a829ea4496235715402ced3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentHealth: 1

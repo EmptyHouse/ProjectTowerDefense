@@ -6,9 +6,9 @@ public class EHDamageableComponent : EHActorComponent
     public UnityAction OnActorDied;
     public int CurrentHealth;
 
-    public void TakeDamage(FAttackData AttackData)
+    public void TakeDamage(FHitData HitData)
     {
-        CurrentHealth -= AttackData.DamageAmount;
+        CurrentHealth -= HitData.DamageAmount;
         if (CurrentHealth <= 0)
         {
             ActorDied();

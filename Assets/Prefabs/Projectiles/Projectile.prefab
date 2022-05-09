@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8948315815328582020}
   - component: {fileID: 2579430694950376519}
   - component: {fileID: 9010461644376426156}
-  - component: {fileID: 4302427827076928461}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -82,19 +81,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4302427827076928461
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5382349762798162966}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5388024731838545943
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,8 +127,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ProjectileRadius: 0.5
-  LaunchSpeed: 20
+  LaunchSpeed: 50
   ProjectileDamage: 10
+  HitData:
+    DamageAmount: 10
 --- !u!54 &578652024329230163
 Rigidbody:
   m_ObjectHideFlags: 0

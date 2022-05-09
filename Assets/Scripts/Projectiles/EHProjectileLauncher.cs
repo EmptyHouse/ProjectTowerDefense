@@ -20,6 +20,6 @@ public class EHProjectileLauncher : EHActorComponent
     {
         EHBaseProjectile Projectile = Instantiate(ProjectileToLaunch, LaunchPoint.position, Quaternion.identity);
         EHGameInstance.Instance.GameMode.AddActor(Projectile);
-        Projectile.LaunchProjectile(LaunchPoint.forward);
+        Projectile.LaunchProjectile(LaunchPoint.forward, OwningActor);
     }
 }

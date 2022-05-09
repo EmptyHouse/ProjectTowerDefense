@@ -1,4 +1,3 @@
-using EmptyHouseGames.ProjectTowerDefense.DataTables;
 using EmptyHouseGames.ProjectTowerDefense.Towers;
 using UnityEngine;
 

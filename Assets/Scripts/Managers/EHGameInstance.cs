@@ -101,6 +101,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Manager
             // Change this to instantiate the player controller in the game mode
             PlayerController = GameObject.FindObjectOfType<EHPlayerController>();
             PlayerState = GameObject.FindObjectOfType<EHPlayerState>();
+            
         }
 
         public T CreateActor<T>(T ActorToCreate, Vector3 Position, Quaternion Rotation) where T : EHActor

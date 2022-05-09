@@ -1,13 +1,13 @@
 using UnityEngine.UI;
 using UnityEngine;
 
-public class EHPlayerUI : EHUIElement
+public class EHPlayerUI : EHUIScene
 {
     public Text CurrencyText;
 
-    public override void InitializeUIElement()
+    public override void InitializeUIScene()
     {
-        base.InitializeUIElement();
+        base.InitializeUIScene();
     }
     
     

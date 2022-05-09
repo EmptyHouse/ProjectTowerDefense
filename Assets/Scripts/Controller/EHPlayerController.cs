@@ -27,7 +27,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Controller
         private const string LookDirectionAxis = "LookDirection";
         private const string MousePosition = "MousePosition";
         #endregion const values
-
+        // Our Input component
         public PlayerInput PlayerInputMap;
         
         private InputAction MovementAction;
@@ -54,7 +54,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Controller
             PlayerCamera = Camera.main.GetComponent<EHGameCamera>();
         }
 
-        protected override void FixedUpdate()
+        protected virtual void Update()
         {
             base.FixedUpdate();
             UpdateMovementAxis();
@@ -71,6 +71,7 @@ namespace EmptyHouseGames.ProjectTowerDefense.Controller
             SetUpInput();
         }
         
+        //NOTE: MOVE THIS TO THE PLAYER CHARACTER. (Allows for more versatility in controller input that way)
         public override void SetUpInput()
         {
             MovementAction = PlayerInputMap.actions[MovementAxis];
@@ -128,8 +129,6 @@ namespace EmptyHouseGames.ProjectTowerDefense.Controller
             Vector3 DirectionFromPlayer = CameraHitPosition - PossessedCharacter.GetActorPosition();
             return new Vector2(DirectionFromPlayer.x, DirectionFromPlayer.z);
         }
-
-        
     }
 }
 
