@@ -16,10 +16,9 @@ public class EHProjectileLauncher : EHActorComponent
         IsTicking = true;
     }
 
-    public void ShootProjectile()
+    public virtual void ShootProjectile()
     {
-        EHBaseProjectile Projectile = Instantiate(ProjectileToLaunch, LaunchPoint.position, Quaternion.identity);
-        EHGameInstance.Instance.GameMode.AddActor(Projectile);
+        EHBaseProjectile Projectile = CreateActor(ProjectileToLaunch, LaunchPoint.position, Quaternion.identity);
         Projectile.LaunchProjectile(LaunchPoint.forward, OwningActor);
     }
 }

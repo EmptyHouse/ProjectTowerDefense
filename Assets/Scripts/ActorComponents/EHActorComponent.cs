@@ -21,6 +21,17 @@ public class EHActorComponent : MonoBehaviour
 
     #region owning actor methods
 
+    public T CreateActor<T>(T ActorToInstatiate, Vector3 Position, Quaternion Rotation) where T : EHActor
+    {
+        return OwningActor.CreateActor(ActorToInstatiate, Position, Rotation);
+    }
+
+    public T CreateActor<T>(T ActorToInstantiate, Vector3 Position, Vector3 Rotation) where T : EHActor
+    {
+        return OwningActor.CreateActor(ActorToInstantiate, Position, Rotation);
+    }
+    
+
     public Vector3 GetOwningActorLocation()
     {
         return OwningActor.GetActorPosition();
